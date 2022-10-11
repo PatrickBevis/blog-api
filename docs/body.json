@@ -1,0 +1,22 @@
+// appUser/1
+{
+  "article": {
+    "type": [],
+    "image": {
+      "type": []
+    },
+    "theme": {
+      "type": 1,
+      "article": {
+        "type":[]
+      }
+    },
+    "tag": {
+      "type": [],
+      "article": {
+        "type":[]
+      }
+    }
+  }
+}
+

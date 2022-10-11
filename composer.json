@@ -1,0 +1,12 @@
+{
+    "name": "patrick/blog-api",
+    "description": "prout",
+    "authors": [
+        {
+            "name": "Patrick"
+        }
+    ],
+    "require": {
+        "firebase/php-jwt": "^6.3"
+    }
+}

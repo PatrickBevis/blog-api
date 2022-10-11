@@ -1,0 +1,55 @@
+@table = tag
+@id = 3
+
+@body = {"Id_tag":3, "title":"tag update", "is_deleted":0}
+
+
+# @body = {"with": ["theme", "appUser", {"tag":"article_tag"}] }
+
+### init controllers
+GET http://blog.api/init
+
+### tests
+POST http://blog.api/test/{{id}}
+Content-Type: application/json
+
+{{body}}
+
+### specific ThemeDetail
+GET http://blog.api/themeDetail/{{id}}
+
+### get all
+GET http://blog.api/{{table}}
+
+### get one
+GET http://blog.api/{{table}}/{{id}}
+
+### insert one row in table
+POST http://blog.api/{{table}}
+Content-Type: application/json
+
+{{body}}
+
+### get all with relations
+POST http://blog.api/{{table}}/0
+Content-Type: application/json
+
+{{body}}
+
+### get one with relations
+POST http://blog.api/{{table}}/{{id}}
+Content-Type: application/json
+
+{{body}}
+
+###
+PUT http://blog.api/{{table}}/{{id}}
+Content-Type: application/json
+
+{{body}}
+
+###
+PATCH http://blog.api/{{table}}/{{id}}
+
+###
+DELETE http://blog.api/{{table}}/{{id}}
