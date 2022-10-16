@@ -12,5 +12,11 @@
 
     "jwt": {
         "secret": "hAqBiezrg897a4568"
+    },
+
+    "restricted" : {
+        "GET/appUser" : "$userRole == 1;",
+        "GET/appUser/:id" : "$userRole == 1 || $userId == $id;",
+        "GET/comment" : "$userRole > 0;"    
     }
 }

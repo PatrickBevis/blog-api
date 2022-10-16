@@ -72,7 +72,7 @@ public function login(){
 
         $token = JWT::encode($requestData, $secretKey, 'HS512');
 
-        return [ "result" => true , "role" => $appuser -> Id_role, "token" =>$token];
+        return [ "result" => true , "role" => $appuser -> Id_role, "id" => $appuser->Id_appUser, "token" =>$token];
 
         }
         return [ "result" => false ];
@@ -83,9 +83,11 @@ public function login(){
 
 public function check(){
     $headers = apache_request_headers();
+    if (isset($headers["Authorization"])){
     $token = $headers["Authorization"];
+    }
     $secretKey = $_ENV['config'] ->jwt->secret;
-    if(!empty($token)){
+    if(!empty($token) && !empty($token)){
         try{
         $payload = JWT::decode($token, new Key($secretKey, 'HS512'));
     }catch(Exception $e){
@@ -96,7 +98,7 @@ public function check(){
     $payload->nbf < time() &&
     $payload->exp > time())
     {
-        return ["result" => true, "role" => $payload->userRole];
+        return ["result" => true, "role" => $payload->userRole, "id" => $payload->userId];
     }
 }
 return ["result" => false];

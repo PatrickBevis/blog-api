@@ -52,6 +52,12 @@
         die;
     }
 
+    require_once 'middlewares/auth.middleware.php';
+    $req= $_SERVER['REQUEST_METHOD']."/".trim($_SERVER["REQUEST_URI"], "/");
+    $am = new AuthMiddleware($req);
+    $am->verify();
+
+
     $controllerFilePath = "controllers/$controllerName.controller.php";
     if(!file_exists($controllerFilePath)){
         header('HTTP/1.0 404 Not Found');
