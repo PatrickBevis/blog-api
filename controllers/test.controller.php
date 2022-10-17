@@ -7,6 +7,9 @@
         if(isset($id) && !ctype_digit($id)){
             return $this;
         }
+        require_once 'services/mail.service.php';
+        $this->action = null;
+
         $request_body = file_get_contents('php://input');
         $this->body = $request_body ? json_decode($request_body, true) : null;
 
@@ -19,6 +22,10 @@
         if($_SERVER['REQUEST_METHOD'] == "POST" && !isset($this->id)){//POST /test
             //GetAll
             $this->action = $this->getAll();
+        }
+        if($_SERVER['REQUEST_METHOD'] == "GET"){
+           
+            $this->action = $this->sendTestMail();
         }
         
     }
@@ -192,6 +199,19 @@
         }
         //TODO loop ? 
         return $rows;
+    }
+
+    function sendTestMail(){
+        $ms = new MailService();
+        $mailParams = [
+            "fromAddress" =>["newsletter@monblog.com","newletter monblog.com"],
+            "destAddresses" =>["bevis.patrick@gmail.com"],
+            "replyAdress" =>["info@monblog.com", "information monblog.com"],
+            "subject" => "Newsletter monblog.com",
+            "body" => "This is the HTML message sent by <b>monblog.com</b>",
+            "altBody" => "This is the plain text message for non-HTML mail clients"
+        ];
+        return $ms->send($mailParams);
     }
 
 }?>

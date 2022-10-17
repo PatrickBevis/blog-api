@@ -83,8 +83,8 @@ public function login(){
 
 public function check(){
     $headers = apache_request_headers();
-    if (isset($headers["Authorization"])){
-    $token = $headers["Authorization"];
+    if(isset($_COOKIE['blog'])){
+        $token = $_COOKIE['blog'];
     }
     $secretKey = $_ENV['config'] ->jwt->secret;
     if(!empty($token) && !empty($token)){

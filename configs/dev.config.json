@@ -18,5 +18,17 @@
         "GET/appUser" : "$userRole == 1;",
         "GET/appUser/:id" : "$userRole == 1 || $userId == $id;",
         "GET/comment" : "$userRole > 0;"    
+    },
+    "mailer" : {
+        "main": {
+            "host": "smtp.gmail.com",
+            "port": 587,
+            "auth" : true,
+            "secure": "tls",
+            "user": "bevis.patrick@gmail.com",
+            "pass": "olggreaxgsodqayw"
+
+        }
     }
+    
 }
